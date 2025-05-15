@@ -157,7 +157,7 @@ export const TaipeiVillage = {
 export const TaipeiBuilding = {
 	id: "taipei_building_3d",
 	source: "taipei_building_3d_source",
-	"source-layer": "tp_building_height84-18p8j0",
+	"source-layer": "tp_building_height-9q3l6p",
 	type: "fill-extrusion",
 	minzoom: 14,
 	paint: {

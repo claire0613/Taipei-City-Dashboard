@@ -7,8 +7,11 @@ services:
     image: redis:7.2.3-alpine
     volumes:
       - redis-data:/data
-      
+    networks:
+      - br_dashboard
+
   postgres-data:
+    platform: linux/amd64
     image: postgis/postgis:16-3.4-alpine
     container_name: postgres-data
     restart: always
@@ -18,8 +21,11 @@ services:
       POSTGRES_PASSWORD: ${DB_DASHBOARD_PASSWORD}
     volumes:
       - postgres-data:/var/lib/postgresql/data
+    networks:
+      - br_dashboard
 
   postgres-manager:
+    platform: linux/amd64
     image: postgis/postgis:16-3.4-alpine
     container_name: postgres-manager
     restart: always
@@ -31,6 +37,8 @@ services:
       - postgres-manager-data:/var/lib/postgresql/data
     ports:
       - "5432:5432"
+    networks:
+      - br_dashboard
 
   pgadmin:
     image: dpage/pgadmin4:latest
@@ -44,10 +52,11 @@ services:
       - "8889:80"
     volumes:
       - pgadmin-data:/var/lib/pgadmin
+    networks:
+      - br_dashboard
 
 networks:
-  default:
-    name: br_dashboard
+  br_dashboard:
     external: true
 
 volumes:
